@@ -1,5 +1,4 @@
 To run the app
-
 - <code> git clone https://github.com/rajiv-shrivastava/webrtc-video-confrence-app.git </code>
 - <code> cd webrtc-video-confrence-app </code>
 - Run <code> npm install </code> 
