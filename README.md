@@ -1,6 +1,6 @@
 To run the app
 - <code> git clone https://github.com/rajiv-shrivastava/exam-portal-app </code>
-- <code> cd webrtc-video-confrence-app </code>
+- <code> cd exam-portal-app </code>
 - Run <code> npm install </code> 
 - Run <code> npm start or node server.js </code>
 - Go to http://localhost:3030/
