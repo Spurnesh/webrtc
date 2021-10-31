@@ -6,6 +6,6 @@ To run the app
 - Go to http://localhost:3030/
 - Now create a new meeting and host meeting
 - URl will be updated with meeting id
-- copy this url from any other browser and hit join meeting button
+- copy this url from any other browser open url and hit join meeting button
 - enter your name and hit join button
 - you will be joined to the meeting as a new user 
