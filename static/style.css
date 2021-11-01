@@ -1,38 +1,37 @@
 body {
     height: 100vh;
+    font-family: monospace;
 }
 
 .Name-Page {
-    width: 400px;
-    padding: 10% 0 0 0;
+    width: 500px;
     margin: auto;
+    padding-top: 100px;
 }
 
 .form {
+    font-family: monospace;
     position: relative;
     z-index: 1;
-    background-color: white;
     max-width: 500px;
     margin: 0 auto 100px;
     padding: 25px;
     text-align: center;
-    background-color: gray;
 }
 
 .form input {
-    font-family: "Roboto", "sans-serif";
+    font-family: monospace;
     outline: 1;
-    background: rgb(226, 218, 218);
+    background: rgb(226 218 218 / 54%);
     width: 100%;
     border: 0;
-    margin: 0 0 15px;
     padding: 20px;
     box-sizing: border-box;
-    font-size: 14px
+    font-size: 18px;
 }
 
 .form button {
-    font-family: "Roboto", "sans-serif";
+    font-family: monospace;
     outline: 0;
     background: #4CAF50;
     width: 100%;
@@ -42,10 +41,12 @@ body {
     font-size: 10px;
     cursor: pointer;
     font-size: 20px;
+    border-radius: 20px;
+    font-weight: bold;
 }
 
 .form p {
-    font-family: "Roboto", "sans-serif";
+    font-family: monospace;
     font-size: 60%;
     margin: 15px;
     font-size: 15px;
@@ -61,5 +62,8 @@ body {
 }
 
 .exam-form-helptext{
-    margin: 20px 0px 20px 0px;color: #eddb0b;font-size: 18px;
+    margin: 20px 0px 20px 0px;
+    color: #068499;
+    font-size: 16px;
+    line-height: 2;
 }

@@ -9,17 +9,29 @@ const peerServer = ExpressPeerServer(server, {
     debug: true,
 });
 const path = require("path");
+const { query } = require("express");
 
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "static")));
 app.use("/peerjs", peerServer);
 
+
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static", "index.html"));
 });
 
+
+const setUrl = (req) => {
+    var hostname = req.headers.host; 
+    var pathname = url.parse(req.url).pathname; 
+    var query =  req.query.name
+    console.log('http://'+hostname+pathname+'?'+query);
+    app.locals.baseURL ='http://'+hostname+pathname+'?'+query
+}
+
 app.get("/join", (req, res) => {
     if(req.query.name){
+        setUrl(req)
         res.redirect(
             url.format({
                 pathname: `/join/${req.query.name}`,

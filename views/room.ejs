@@ -20,6 +20,7 @@
     <script>
         const myname ="<%=Myname %>"
         const roomId ="<%=roomid %>"
+        const baseURL ="<%=baseURL %>"
     </script>
 </head>
 
@@ -27,24 +28,24 @@
     <div class="modal fade" id="getCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Please find below the exam URL</h4>
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title">Please find below the exam URL</h5>
                 </div>
                 <div class="modal-body">
                     <p id="roomid">
-                     <input type="text" value="http://localhost:3030/join/<%=roomid %>" id="myInput">                        
+                     <input type="text" value="<%=baseURL %>" id="modal_url_input" class="modal-url-input"/>                        
                     </p>
                     <p>
                         Please copy this url and share with other students so that they can join the exam
-                        <button onclick="copyExamUrlHandler()">Copy Exam URL</button>
+                        <button onclick="copyExamUrlHandler()" class="modal-button-custom">Copy Exam URL</button>
                         <div style="visibility: hidden;" id="url_span" class="text-copy"> 
                              Exam URL Copied
                         </div>
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-white" onclick="cancel()">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="copy()">Copy</button>
+                    <button type="button" class="btn btn-white" onclick="cancel()" 
+                     style="background: #c34141;color: #fff;">Close</button>               
                 </div>
             </div>
         </div>
@@ -83,7 +84,11 @@
                 </div>
                 <div class="main_controls_block">
                     <div class="main_controls_button leave_button">
-                        <span class="leave_meeting"><a href="/">Leave Meeting</a></span>
+                        <span class="leave_meeting">
+                            <a href="/" style="color: #fff;"> 
+                                Leave Meeting
+                            </a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -111,7 +116,7 @@
 <script>
     function copyExamUrlHandler() {
         /* Get the text field */
-        var copyText = document.getElementById("myInput");
+        var copyText = document.getElementById("modal_url_input");
 
         /* Select the text field */
         copyText.select();
@@ -122,9 +127,9 @@
 
         /* Alert the copied text */
         console.log("exam url",copyText.value);
-       document.getElementById("url_span").style.margin = "10px 0px 0px 5px";
-       document.getElementById("url_span").style.color = "#c12081";  
-       document.getElementById("url_span").style.visibility = "visible";
+        document.getElementById("url_span").style.margin = "10px 0px 0px 5px";
+        document.getElementById("url_span").style.color = "#c74a4a";  
+        document.getElementById("url_span").style.visibility = "visible";
     }
 
 </script>

@@ -6,7 +6,7 @@
 html,
 body {
     height: 100%;
-    font-family: "Roboto", sans-serif;
+    font-family: monospace;
 }
 
 #video-grids {
@@ -101,9 +101,8 @@ video {
 }
 
 .leave_button {
-    color: white !important;
-    background-color: #950815eb;
-    border-radius: 5%;
+    background-color: #d52838eb;
+    border-radius: 20px;
 }
 
 .main__message_container {
@@ -160,4 +159,29 @@ video {
     100% {
         background-position: 0% 100%;
     }
+}
+
+
+.modal-header-custom{
+    background-color:#afdbaf;
+    color: #000000;
+}
+
+.modal-url-input{
+    width: 100%;
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    font-weight: 500;
+}
+
+.modal-button-custom {
+    line-height: 1;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 7px;
+    color: #fff;
+    background: rgb(6, 132, 153);;
+    border: none;
+    font-weight: 600;
 }
