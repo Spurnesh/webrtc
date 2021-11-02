@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
 const { ExpressPeerServer } = require("peer");
 const url = require("url");
@@ -10,9 +9,9 @@ const peerServer = ExpressPeerServer(server, {
 });
 const path = require("path");
 const { query } = require("express");
+app.locals.first_user = true;
 app.locals.meeting_id='';
-
-
+app.locals.examUrl= ''
 app.locals.baseURL = ''
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "static")));
@@ -26,9 +25,10 @@ app.get("/", (req, res) => {
 
 const setUrl = (req) => {
     var hostname=req.headers.host; 
-    var pathname=url.parse(req.url).pathname; 
+    // var pathname=url.parse(req.url).pathname;    //join is the pathname not required for now
     app.locals.meeting_id=req.query.exam_subject
-    app.locals.baseURL ='http://'+hostname+pathname
+    app.locals.baseURL ='http://'+hostname
+    app.locals.examUrl = app.locals.baseURL+"?exam_subject="+app.locals.meeting_id
 }
 
 app.get("/join", (req, res) => {
@@ -50,7 +50,7 @@ app.get("/join", (req, res) => {
 app.get("/joinold", (req, res) => {
     res.redirect(
         url.format({
-            pathname: `/join/${app.locals.meeting_id}`,
+            pathname: `/join/${req.query.exam_subject_student}`,
             query: req.query,
         })
     );
@@ -62,7 +62,9 @@ app.get("/join/:rooms", (req, res) => {
 
 io.on("connection", (socket) => {
     socket.on("join-room", (roomId, id, myname) => {
+
         socket.join(roomId);
+        
         socket.to(roomId).broadcast.emit("user-connected", id, myname);
 
         socket.on("messagesend", (message) => {
@@ -71,8 +73,13 @@ io.on("connection", (socket) => {
         });
 
         socket.on("tellName", (myname) => {
-            console.log(myname);
-            socket.to(roomId).broadcast.emit("AddName", myname);
+            if(app.locals.first_user){
+                socket.to(roomId).broadcast.emit("AddName", `${myname}(Examiner)`);
+            }
+            else {
+                socket.to(roomId).broadcast.emit("AddName", myname);
+            }
+            app.locals.first_user = false;
         });
 
         socket.on("disconnect", () => {

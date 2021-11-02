@@ -3,19 +3,23 @@ const main__chat__window = document.getElementById("main__chat_window");
 const videoGrids = document.getElementById("video-grids");
 const myVideo = document.createElement("video");
 const chat = document.getElementById("chat");
+let isStudentGrid=false;
 OtherUsername = "";
 chat.hidden = true;
 myVideo.muted = true;
 
 
 
-window.onload = () => {
-    let params = (new URL(document.location)).searchParams;
-    let exam_subject = params.get("exam_subject");
-    console.log("name",exam_subject.length)
-    $(document).ready(function() {
-        $("#getCodeModal").modal("show");
-    });
+window.onload = () => {       
+    if(document.location.href.includes('exam_subject_student')){
+        isStudentGrid = true;
+    }
+    else {
+        isStudentGrid = false;
+        $(document).ready(function() {
+            $("#getCodeModal").modal("show");
+        });
+    }    
 };
 
 var peer = new Peer(undefined, {
@@ -91,7 +95,6 @@ socket.on("AddName", (username) => {
 });
 
 const RemoveUnusedDivs = () => {
-    //
     alldivs = videoGrids.getElementsByTagName("div");
     for (var i = 0; i < alldivs.length; i++) {
         e = alldivs[i].getElementsByTagName("video").length;
@@ -105,7 +108,6 @@ const connectToNewUser = (userId, streams, myname) => {
     const call = peer.call(userId, streams);
     const video = document.createElement("video");
     call.on("stream", (userVideoStream) => {
-        //       console.log(userVideoStream);
         addVideoStream(video, userVideoStream, myname);
     });
     call.on("close", () => {

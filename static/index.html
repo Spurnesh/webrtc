@@ -14,7 +14,7 @@
     <div class="Name-Page">
         <div class="form">
             <form class="teacher-join-form" action="/join" id="teacher_form">
-                <input type="text" name="examiner_name" placeholder="Please Enter Examiner Name" required />
+                <input type="text" name="name" placeholder="Please Enter Examiner Name" required />
                 <input type="text" name="exam_subject" placeholder="Please Enter Subject of Exam" required />
                 <div class="exam-form-helptext">   
                     Please enter the above fields to proceed
@@ -23,7 +23,11 @@
             </form>
 
             <form class="student-joining-form" action="/joinold" id="student_form">
-                <input type="text" placeholder="Enter your name" name="name" />
+                <input type="hidden" name="exam_subject_student" id="exam_subject_input" value=''/>
+                <input type="text" placeholder="Enter your name or Roll number" name="name" required />
+                <div class="exam-form-helptext">   
+                    Student please enter name or roll number in order to proceed.  
+                </div>
                 <button>Join Exam</button>
             </form>
         </div>
@@ -37,12 +41,13 @@
             let params = (new URL(document.location)).searchParams;
             let exam_subject = params.get("exam_subject");
             if(exam_subject && exam_subject.length > 0){
-              document.getElementById("teacher_form").style.display = 'none'
-              document.getElementById("student_form").style.display = ''
+              document.getElementById("exam_subject_input").value = exam_subject; 
+              document.getElementById("teacher_form").style.display = 'none';
+              document.getElementById("student_form").style.display = '';
             }
             else {
-                document.getElementById("teacher_form").style.display = ''
-                document.getElementById("student_form").style.display = 'none'
+                document.getElementById("teacher_form").style.display = '';
+                document.getElementById("student_form").style.display = 'none';
             }
 
         })

@@ -20,7 +20,6 @@
     <script>
         const myname ="<%=Myname %>"
         const roomId ="<%=roomid %>"
-        const baseURL ="<%=baseURL %><%=meeting_id%>"
     </script>
 </head>
 
@@ -33,7 +32,7 @@
                 </div>
                 <div class="modal-body">
                     <p id="roomid">
-                     <input type="text" value="<%=baseURL %>" id="modal_url_input" class="modal-url-input"/>                        
+                     <input type="text" value="<%=examUrl %>" id="modal_url_input" class="modal-url-input"/>                        
                     </p>
                     <p>
                         Please copy this url and share with other students so that they can join the exam
@@ -71,7 +70,7 @@
                 <div class="main_controls_block">
                     <div class="main_controls_button" onclick="invitebox()">
                         <i class="fas fa-user-plus"></i>
-                        <span>Invite</span>
+                        <span>Invite Student To Exam</span>
                     </div>
                     <div class="main_controls_button">
                         <i class="fas fa-user-friends"></i>
@@ -114,22 +113,17 @@
 </body>
 
 <script>
-    function copyExamUrlHandler() {
-        /* Get the text field */
-        var copyText = document.getElementById("modal_url_input");
+        function copyExamUrlHandler() {
+            var copyText = document.getElementById("modal_url_input");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            navigator.clipboard.writeText(copyText.value);
+            document.getElementById("url_span").style.margin = "10px 0px 0px 5px";
+            document.getElementById("url_span").style.color = "#c74a4a";  
+            document.getElementById("url_span").style.visibility = "visible";
+        }
 
-        /* Select the text field */
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        console.log("aa",document.getElementById("#video-grids").val())
 
-        /* Copy the text inside the text field */
-        navigator.clipboard.writeText(copyText.value);
-
-        /* Alert the copied text */
-        console.log("exam url",copyText.value);
-        document.getElementById("url_span").style.margin = "10px 0px 0px 5px";
-        document.getElementById("url_span").style.color = "#c74a4a";  
-        document.getElementById("url_span").style.visibility = "visible";
-    }
 </script>
 </html>
