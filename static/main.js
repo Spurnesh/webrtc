@@ -10,6 +10,9 @@ myVideo.muted = true;
 
 
 window.onload = () => {
+    let params = (new URL(document.location)).searchParams;
+    let exam_subject = params.get("exam_subject");
+    console.log("name",exam_subject.length)
     $(document).ready(function() {
         $("#getCodeModal").modal("show");
     });

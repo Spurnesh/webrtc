@@ -20,7 +20,7 @@
     <script>
         const myname ="<%=Myname %>"
         const roomId ="<%=roomid %>"
-        const baseURL ="<%=baseURL %>"
+        const baseURL ="<%=baseURL %><%=meeting_id%>"
     </script>
 </head>
 
@@ -131,6 +131,5 @@
         document.getElementById("url_span").style.color = "#c74a4a";  
         document.getElementById("url_span").style.visibility = "visible";
     }
-
 </script>
 </html>

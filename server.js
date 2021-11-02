@@ -10,7 +10,10 @@ const peerServer = ExpressPeerServer(server, {
 });
 const path = require("path");
 const { query } = require("express");
+app.locals.meeting_id='';
 
+
+app.locals.baseURL = ''
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "static")));
 app.use("/peerjs", peerServer);
@@ -22,25 +25,24 @@ app.get("/", (req, res) => {
 
 
 const setUrl = (req) => {
-    var hostname = req.headers.host; 
-    var pathname = url.parse(req.url).pathname; 
-    var query =  req.query.name
-    console.log('http://'+hostname+pathname+'?'+query);
-    app.locals.baseURL ='http://'+hostname+pathname+'?'+query
+    var hostname=req.headers.host; 
+    var pathname=url.parse(req.url).pathname; 
+    app.locals.meeting_id=req.query.exam_subject
+    app.locals.baseURL ='http://'+hostname+pathname
 }
 
 app.get("/join", (req, res) => {
-    if(req.query.name){
+    if(req.query.exam_subject){
         setUrl(req)
         res.redirect(
             url.format({
-                pathname: `/join/${req.query.name}`,
+                pathname: `/join/${req.query.exam_subject}`,
                 query: req.query,
             })
         );
     }
     else {
-        res.sendFile(path.join(__dirname, "static", "index.html"));
+        res.sendFile(path.join(__dirname, "static", "index.html",{forStudent: "true"}));
     }
 
 });
@@ -48,7 +50,7 @@ app.get("/join", (req, res) => {
 app.get("/joinold", (req, res) => {
     res.redirect(
         url.format({
-            pathname: req.query.meeting_id,
+            pathname: `/join/${app.locals.meeting_id}`,
             query: req.query,
         })
     );

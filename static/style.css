@@ -28,6 +28,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
     font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .form button {
@@ -55,10 +56,6 @@ body {
 .form button:hover {
     background: #43A047;
     font-size: 20px;
-}
-
-.form .unknown-form {
-    display: none
 }
 
 .exam-form-helptext{
