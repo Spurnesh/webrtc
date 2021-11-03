@@ -117,7 +117,7 @@ const connectToNewUser = (userId, streams, myname) => {
     peers[userId] = call;
 };
 
-const cancel = () => {
+const cancel = () => {    
     $("#getCodeModal").modal("hide");
 };
 
@@ -126,6 +126,7 @@ const copy = async() => {
     await navigator.clipboard.writeText("http://localhost:3030/join/" + roomid);
 };
 const invitebox = () => {
+    document.getElementById("url_span").style.visibility = "hidden";
     $("#getCodeModal").modal("show");
 };
 
@@ -159,6 +160,7 @@ const showchat = () => {
         chat.hidden = false;
     }
 };
+
 
 const addVideoStream = (videoEl, stream, name) => {
     videoEl.srcObject = stream;

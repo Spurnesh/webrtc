@@ -144,9 +144,10 @@ video {
 }
 
 .main_right_header h6 {
-    animation: animate 20s linear infinite;
-    background-image: linear-gradient(to right, #f00, #ff0, #0ff, #0f0, #00f);
-    background-size: 1000%;
+    background-color: rgb(6 132 153);
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 16px;
 }
 
 @keyframes animate {

@@ -14,7 +14,7 @@
     <div class="Name-Page">
         <div class="form">
             <form class="teacher-join-form" action="/join" id="teacher_form">
-                <input type="text" name="name" placeholder="Please Enter Examiner Name" required />
+                <input type="text" name="name" placeholder="Please Enter Examiner Name" id="teacher_name" required />
                 <input type="text" name="exam_subject" placeholder="Please Enter Subject of Exam" required />
                 <div class="exam-form-helptext">   
                     Please enter the above fields to proceed
@@ -49,6 +49,16 @@
                 document.getElementById("teacher_form").style.display = '';
                 document.getElementById("student_form").style.display = 'none';
             }
+
+            document.getElementById("teacher_name").addEventListener("blur", function(){
+                let input_val = this.value.length > 0 ? `${this.value}(examiner)` : this.value 
+                this.value = input_val
+            });
+
+            document.getElementById("teacher_name").addEventListener("focus", function(){
+                let input_val = this.value.length > 0 ? this.value.replace("(examiner)",'') : this.value 
+                this.value = input_val
+            });
 
         })
     </script>

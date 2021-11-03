@@ -73,13 +73,7 @@ io.on("connection", (socket) => {
         });
 
         socket.on("tellName", (myname) => {
-            if(app.locals.first_user){
-                socket.to(roomId).broadcast.emit("AddName", `${myname}(Examiner)`);
-            }
-            else {
-                socket.to(roomId).broadcast.emit("AddName", myname);
-            }
-            app.locals.first_user = false;
+            socket.to(roomId).broadcast.emit("AddName", myname);
         });
 
         socket.on("disconnect", () => {
