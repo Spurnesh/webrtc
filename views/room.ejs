@@ -17,10 +17,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
 
+    <!-- imp variable declaration to communicate with logic donot delete -->
     <script>
         const myname ="<%=Myname %>"
         const roomId ="<%=roomid %>"
     </script>
+    <!-- imp variable declaration to communicate with logic donot delete -->
 </head>
 
 <body>
@@ -111,19 +113,4 @@
     </div>
     <script src="http://localhost:3030/public/main.js"></script>
 </body>
-
-<script>
-        function copyExamUrlHandler() {
-            var copyText = document.getElementById("modal_url_input");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
-            navigator.clipboard.writeText(copyText.value);
-            document.getElementById("url_span").style.margin = "10px 0px 0px 5px";
-            document.getElementById("url_span").style.color = "#c74a4a";  
-            document.getElementById("url_span").style.visibility = "visible";
-        }
-
-        console.log("aa",document.getElementById("#video-grids").val())
-
-</script>
 </html>

@@ -19,7 +19,7 @@ window.onload = () => {
         $(document).ready(function() {
             $("#getCodeModal").modal("show");
         });
-    }    
+    }   
 };
 
 var peer = new Peer(undefined, {
@@ -62,6 +62,7 @@ navigator.mediaDevices
             if (peers[id]) peers[id].close();
         });
     });
+
 peer.on("call", (call) => {
     getUserMedia({ video: true, audio: true },
         function(stream) {
@@ -100,7 +101,7 @@ const RemoveUnusedDivs = () => {
         e = alldivs[i].getElementsByTagName("video").length;
         if (e == 0) {
             alldivs[i].remove();
-        }
+        }        
     }
 };
 
@@ -125,9 +126,20 @@ const copy = async() => {
     const roomid = document.getElementById("roomid").innerText;
     await navigator.clipboard.writeText("http://localhost:3030/join/" + roomid);
 };
+
 const invitebox = () => {
     document.getElementById("url_span").style.visibility = "hidden";
     $("#getCodeModal").modal("show");
+};
+
+const copyExamUrlHandler = () => {
+    var copyText = document.getElementById("modal_url_input");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    navigator.clipboard.writeText(copyText.value);
+    document.getElementById("url_span").style.margin = "10px 0px 0px 5px";
+    document.getElementById("url_span").style.color = "#c74a4a";  
+    document.getElementById("url_span").style.visibility = "visible";
 };
 
 const muteUnmute = () => {
@@ -162,6 +174,7 @@ const showchat = () => {
 };
 
 
+
 const addVideoStream = (videoEl, stream, name) => {
     videoEl.srcObject = stream;
     videoEl.addEventListener("loadedmetadata", () => {
@@ -172,6 +185,7 @@ const addVideoStream = (videoEl, stream, name) => {
     h3.setAttribute("class", "video-grid-header");
     h3.appendChild(h3name);
     const videoGrid = document.createElement("div");
+    videoGrid.id = videoGrids.length + 1
     videoGrid.classList.add("video-grid");
     videoGrid.appendChild(h3);
     videoGrids.appendChild(videoGrid);

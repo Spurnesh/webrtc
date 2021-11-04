@@ -9,10 +9,9 @@ const peerServer = ExpressPeerServer(server, {
 });
 const path = require("path");
 const { query } = require("express");
-app.locals.first_user = true;
 app.locals.meeting_id='';
-app.locals.examUrl= ''
-app.locals.baseURL = ''
+app.locals.examUrl= '';
+app.locals.baseURL = '';
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "static")));
 app.use("/peerjs", peerServer);
@@ -63,8 +62,9 @@ app.get("/join/:rooms", (req, res) => {
 io.on("connection", (socket) => {
     socket.on("join-room", (roomId, id, myname) => {
 
+
         socket.join(roomId);
-        
+
         socket.to(roomId).broadcast.emit("user-connected", id, myname);
 
         socket.on("messagesend", (message) => {
@@ -79,6 +79,8 @@ io.on("connection", (socket) => {
         socket.on("disconnect", () => {
             socket.to(roomId).broadcast.emit("user-disconnected", id);
         });
+
+      
     });
 });
 
