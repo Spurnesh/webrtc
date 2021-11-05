@@ -57,6 +57,10 @@
                 <div id="video-grids">
                 </div>
             </div>
+            <div class="main_videos">
+                <div id="video-grids_students">
+                </div>
+            </div>
             <div class="main_controls">
                 <div class="main_controls_block">
                     <div class="main_controls_button" id="mic" onclick="muteUnmute()">
@@ -69,7 +73,7 @@
                         <span>Stop Video</span>
                     </div>
                 </div>
-                <div class="main_controls_block">
+                <div class="main_controls_block" id="teacher_controls">
                     <div class="main_controls_button" onclick="invitebox()">
                         <i class="fas fa-user-plus"></i>
                         <span>Invite Student To Exam</span>
@@ -83,11 +87,11 @@
                         <span>Chat</span>
                     </div>
                 </div>
-                <div class="main_controls_block">
+                <div class="main_controls_block" id="leave_meeting_div">
                     <div class="main_controls_button leave_button">
                         <span class="leave_meeting">
                             <a href="/" style="color: #fff;"> 
-                                Leave Meeting
+                                Leave Exam
                             </a>
                         </span>
                     </div>
@@ -111,6 +115,8 @@
             </div>
         </div>
     </div>
-    <script src="http://localhost:3030/public/main.js"></script>
+    
 </body>
+<script src="http://localhost:3030/public/main.js"></script>
+
 </html>

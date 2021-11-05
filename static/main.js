@@ -3,7 +3,6 @@ const main__chat__window = document.getElementById("main__chat_window");
 const videoGrids = document.getElementById("video-grids");
 const myVideo = document.createElement("video");
 const chat = document.getElementById("chat");
-let isStudentGrid=false;
 OtherUsername = "";
 chat.hidden = true;
 myVideo.muted = true;
@@ -12,14 +11,14 @@ myVideo.muted = true;
 
 window.onload = () => {       
     if(document.location.href.includes('exam_subject_student')){
-        isStudentGrid = true;
+        document.getElementById("video-grids").remove();  
+        document.getElementById("teacher_controls").remove();
+        document.getElementById("leave_meeting_div").remove();          
     }
     else {
-        isStudentGrid = false;
-        $(document).ready(function() {
-            $("#getCodeModal").modal("show");
-        });
-    }   
+        document.getElementById("video-grids_students").remove();
+        $("#getCodeModal").modal("show");      
+    }
 };
 
 var peer = new Peer(undefined, {
@@ -42,6 +41,7 @@ sendmessage = (text) => {
         main__chat_window.scrollTop = main__chat_window.scrollHeight;
     }
 };
+
 
 navigator.mediaDevices
     .getUserMedia({
@@ -92,7 +92,6 @@ socket.on("createMessage", (message) => {
 
 socket.on("AddName", (username) => {
     OtherUsername = username;
-    console.log(username);
 });
 
 const RemoveUnusedDivs = () => {
@@ -105,6 +104,8 @@ const RemoveUnusedDivs = () => {
     }
 };
 
+
+// code of call will be crucial in this app
 const connectToNewUser = (userId, streams, myname) => {
     const call = peer.call(userId, streams);
     const video = document.createElement("video");
@@ -117,6 +118,7 @@ const connectToNewUser = (userId, streams, myname) => {
     });
     peers[userId] = call;
 };
+// code of call will be crucial in this app
 
 const cancel = () => {    
     $("#getCodeModal").modal("hide");
@@ -155,7 +157,6 @@ const muteUnmute = () => {
 
 const VideomuteUnmute = () => {
     const enabled = myVideoStream.getVideoTracks()[0].enabled;
-    console.log(getUserMedia);
     if (enabled) {
         myVideoStream.getVideoTracks()[0].enabled = false;
         document.getElementById("video").style.color = "red";

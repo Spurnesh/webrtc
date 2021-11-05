@@ -12,6 +12,7 @@ const { query } = require("express");
 app.locals.meeting_id='';
 app.locals.examUrl= '';
 app.locals.baseURL = '';
+app.locals.isTeacher = true;
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "static")));
 app.use("/peerjs", peerServer);
@@ -31,6 +32,7 @@ const setUrl = (req) => {
 }
 
 app.get("/join", (req, res) => {
+    app.locals.isTeacher = true;
     if(req.query.exam_subject){
         setUrl(req)
         res.redirect(
@@ -47,6 +49,7 @@ app.get("/join", (req, res) => {
 });
 
 app.get("/joinold", (req, res) => {
+    app.locals.isTeacher = false;
     res.redirect(
         url.format({
             pathname: `/join/${req.query.exam_subject_student}`,
@@ -68,7 +71,6 @@ io.on("connection", (socket) => {
         socket.to(roomId).broadcast.emit("user-connected", id, myname);
 
         socket.on("messagesend", (message) => {
-            console.log(message);
             io.to(roomId).emit("createMessage", message);
         });
 
