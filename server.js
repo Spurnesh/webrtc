@@ -19,7 +19,7 @@ app.use("/peerjs", peerServer);
 
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "static", "index.html"));
+    res.sendFile(path.join(__dirname, "../exam-react-ui/static", "index.html"));
 });
 
 
@@ -86,6 +86,6 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(process.env.PORT || 3030);
+server.listen(process.env.PORT || 5000);
 
-console.log("GO TO http://localhost:3030/")
+console.log("GO TO http://localhost:5000/")

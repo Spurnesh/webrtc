@@ -57,8 +57,13 @@
                 <div id="video-grids">
                 </div>
             </div>
-            <div class="main_videos">
-                <div id="video-grids_students">
+            <div class="main_videos">                
+                <div id="video-grids-students">
+                    <p class="student-main-window-helptext">
+                        Exam is live please do not leave the window , 
+                        or refresh the window and make sure your internet is uninteruupted. 
+                        In case you got disconnected refresh the page and enter your name again and restart
+                    </p>
                 </div>
             </div>
             <div class="main_controls">
@@ -73,8 +78,8 @@
                         <span>Stop Video</span>
                     </div>
                 </div>
-                <div class="main_controls_block" id="teacher_controls">
-                    <div class="main_controls_button" onclick="invitebox()">
+                <div class="main_controls_block">
+                    <div class="main_controls_button" onclick="invitebox()" id="invite-button">
                         <i class="fas fa-user-plus"></i>
                         <span>Invite Student To Exam</span>
                     </div>
@@ -82,13 +87,13 @@
                         <i class="fas fa-user-friends"></i>
                         <span>Participants</span>
                     </div>
-                    <div class="main_controls_button" onclick="showchat()">
+                    <div class="main_controls_button" onclick="showchat()" id="chat-button">
                         <i class="fas fa-comment-alt"></i>
                         <span>Chat</span>
                     </div>
                 </div>
-                <div class="main_controls_block" id="leave_meeting_div">
-                    <div class="main_controls_button leave_button">
+                <div class="main_controls_block">
+                    <div class="main_controls_button leave_button" id="leave-button-teacher">
                         <span class="leave_meeting">
                             <a href="/" style="color: #fff;"> 
                                 Leave Exam

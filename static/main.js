@@ -1,6 +1,7 @@
 const socket = io("/");
 const main__chat__window = document.getElementById("main__chat_window");
 const videoGrids = document.getElementById("video-grids");
+const videoGridsStudents = document.getElementById("video-grids-students");
 const myVideo = document.createElement("video");
 const chat = document.getElementById("chat");
 OtherUsername = "";
@@ -11,12 +12,16 @@ myVideo.muted = true;
 
 window.onload = () => {       
     if(document.location.href.includes('exam_subject_student')){
-        document.getElementById("video-grids").remove();  
-        document.getElementById("teacher_controls").remove();
-        document.getElementById("leave_meeting_div").remove();          
+        document.getElementById("video-grids").remove();
+        document.getElementById("video").remove();
+        document.getElementById("invite-button").remove();
+        document.getElementById("leave-button-teacher").remove();        
+        setTimeout(function(){ 
+            addVideoStreamForStudent(myVideo,myVideoStream,myname) 
+        }, 5000);
     }
     else {
-        document.getElementById("video-grids_students").remove();
+        document.getElementById("video-grids-students").remove();
         $("#getCodeModal").modal("show");      
     }
 };
@@ -171,6 +176,31 @@ const showchat = () => {
         chat.hidden = true;
     } else {
         chat.hidden = false;
+    }
+};
+
+const addVideoStreamForStudent = (videoEl, stream, name) => {
+    videoEl.srcObject = stream;
+    videoEl.addEventListener("loadedmetadata", () => {
+        videoEl.play();
+    });
+    const h3 = document.createElement("h3");
+    const h3name = document.createTextNode(name);
+    h3.setAttribute("class", "video-grid-header");
+    h3.appendChild(h3name);
+    const videoGrid = document.createElement("div");
+    videoGrid.id = videoGridsStudents.length + 1
+    videoGrid.classList.add("video-grid");
+    videoGrid.appendChild(h3);
+    videoGridsStudents.appendChild(videoGrid);
+    videoGrid.append(videoEl);
+    RemoveUnusedDivs();
+    let totalUsers = document.getElementsByTagName("video").length;
+    if (totalUsers > 1) {
+        for (let index = 0; index < totalUsers; index++) {
+            document.getElementsByTagName("video")[index].style.width =
+                100 / totalUsers + "%";
+        }
     }
 };
 

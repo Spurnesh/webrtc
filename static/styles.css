@@ -97,7 +97,7 @@ video {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 20px 40px 0px 40px;
 }
 
 .leave_button {
@@ -185,4 +185,11 @@ video {
     background: rgb(6, 132, 153);;
     border: none;
     font-weight: 600;
+}
+
+.student-main-window-helptext{
+    color: white;
+    background: #a34343;
+    border-radius: 40px;
+    padding: 10px 50px 10px 50px;
 }
